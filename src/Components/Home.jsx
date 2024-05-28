@@ -97,9 +97,9 @@ const Home = () => {
                     <ul className="list-group list-group-flush">
                         {move.map((item, index) => (
                             item.count === -1 ?
-                            <li key={index} className="list-group-item">{item.item} se ha reducido en 1</li>
+                            <li key={index} className="list-group-item">{item.item} se ha <span className='text-danger'>reducido</span> en 1</li>
                             :
-                            <li key={index} className="list-group-item">{item.item} se ha incrementado en 1</li>
+                            <li key={index} className="list-group-item">{item.item} se ha <span className='text-success'>incrementado</span> en 1</li>
                         ))}
                     </ul>
                 </div>
