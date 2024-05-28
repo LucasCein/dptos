@@ -10,8 +10,12 @@ const Home = () => {
 
     useEffect(() => {
         const storedCount = localStorage.getItem('count');
+        const storedMove = localStorage.getItem('move');
         if (storedCount) {
             setCount(JSON.parse(storedCount));
+        }
+        if (storedMove) {
+            setMove(JSON.parse(storedMove));
         }
     }, []); // Se ejecuta una vez al montar el componente
 
@@ -20,7 +24,10 @@ const Home = () => {
         if (JSON.stringify(count) !== JSON.stringify(initialCount)) {
             localStorage.setItem('count', JSON.stringify(count));
         }
-    }, [count, initialCount]);
+        if(JSON.stringify(move) !== JSON.stringify([])){
+            localStorage.setItem('move', JSON.stringify(move));
+        }
+    }, [count, initialCount, move]);
 
     const createMessage = () => {
         let message = '*Lavadero*:\n\n';
