@@ -9,8 +9,8 @@ const Home = () => {
     const [move, setMove] = useState([]);
 
     useEffect(() => {
-        const storedCount = localStorage.getItem('count');
-        const storedMove = localStorage.getItem('move');
+        const storedCount = sessionStorage.getItem('count');
+        const storedMove = sessionStorage.getItem('move');
         if (storedCount) {
             setCount(JSON.parse(storedCount));
         }
@@ -20,12 +20,12 @@ const Home = () => {
     }, []); // Se ejecuta una vez al montar el componente
 
     useEffect(() => {
-        // Evita guardar el estado inicial vacío en localStorage
+        // Evita guardar el estado inicial vacío en sessionStorage
         if (JSON.stringify(count) !== JSON.stringify(initialCount)) {
-            localStorage.setItem('count', JSON.stringify(count));
+            sessionStorage.setItem('count', JSON.stringify(count));
         }
-        if(JSON.stringify(move) !== JSON.stringify([])){
-            localStorage.setItem('move', JSON.stringify(move));
+        if (JSON.stringify(move) !== JSON.stringify([])) {
+            sessionStorage.setItem('move', JSON.stringify(move));
         }
     }, [count, initialCount, move]);
 
@@ -75,7 +75,7 @@ const Home = () => {
                                 <button
                                     className="btn btn-success d-flex align-items-center justify-content-center ms-1 p-1"
                                     onClick={() => {
-                                        setCount({ ...count, [item]: Math.max(0, count[item] + 1) });
+                                        setCount({ ...count, [item]: count[item] + 1 });
                                         setMove([{ item, count: 1 }, ...move]); // Agrega al inicio
                                     }}
                                 >
